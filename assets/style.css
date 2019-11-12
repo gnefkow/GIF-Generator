@@ -1,0 +1,50 @@
+
+html {font-size: 62.5%;} /* Sets the default size so you can use ems and rems */
+* {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  text-decoration: none;
+  font-size: 62.5%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+#pageTitle {
+  text-align: center;
+  padding-top: 1em;
+  padding-bottom: 1em;
+}
+
+.placeholderBox{
+  background-color: #eee;
+  border-radius: .5em;
+  border: #bbb dotted 5px;
+
+  color: #aaa;
+  text-align: center;
+  padding-top: 2.5em;
+  padding-bottom: 2.5em;
+}
+
+.queryButton {
+  background-color: white;
+  display: inline-block;
+  text-align: center;
+  padding: .5em 1.25em .5em 1.25em;
+  font-size: 1.5em;
+  border-radius: 1.75em;
+  margin-right: 1em;
+  margin-bottom: 1em;
+  border: 1px  solid #fff;
+  -webkit-box-shadow: 1px 1px 6px 0px rgba(50, 50, 50, 0.2);
+  -moz-box-shadow:    1px 1px 6px 0px rgba(50, 50, 50, 0.2);
+  box-shadow:         1px 1px 6px 0px rgba(50, 50, 50, 0.2);
+}
+
+.queryButton:hover{
+  border: 1px  solid #fff;
+  -webkit-box-shadow: 2px 2px 7px 0px rgba(50, 50, 50, 0.3);
+  -moz-box-shadow:    2px 2px 7px 0px rgba(50, 50, 50, 0.3);
+  box-shadow:         2px 2px 7px 0px rgba(50, 50, 50, 0.3);
+}
