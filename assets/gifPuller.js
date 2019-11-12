@@ -36,7 +36,7 @@ function getClick() {
   // Pulls the ID:
   for (var i = 0; i < clickedButton.length; i++) {
       clickedButton[i].addEventListener('click', function(i) {
-      buttonId = i.originalTarget.id;
+      buttonId = i.target.id;
       getGIFs();
     });
   } 
@@ -108,8 +108,8 @@ function animateClick() {
   for (var i = 0; i < clickedGIF.length; i++) {
     // Event Listener:
       clickedGIF[i].addEventListener('click', function(i){
-          gifId = i.originalTarget.id;
-          gifState = i.originalTarget.dataset.state;
+          gifId = i.target.id;
+          gifState = i.target.dataset.state;
 
       // Set to animate or be still:
           if (gifState === "still") {
@@ -119,6 +119,9 @@ function animateClick() {
             this.setAttribute("data-state", "still");
             this.setAttribute("src", this.dataset.still);
           };
+
+      // Remove Event Listener:
+      clickedGIF[i].removeEventListener('click'); // I dont' know if this is actually working.
       });
   };   
 };

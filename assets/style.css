@@ -55,6 +55,7 @@ html {font-size: 62.5%;} /* Sets the default size so you can use ems and rems */
 
 .gifImg[data-state='still']{
   opacity: 0.5;
+  width: 60%;
   -webkit-box-shadow: 2px 2px 7px 0px rgba(50, 50, 50, 0);
   -moz-box-shadow:    2px 2px 7px 0px rgba(50, 50, 50, 0);
   box-shadow:         2px 2px 7px 0px rgba(50, 50, 50, 0);
@@ -65,4 +66,12 @@ html {font-size: 62.5%;} /* Sets the default size so you can use ems and rems */
   -webkit-box-shadow: 2px 2px 7px 0px rgba(50, 50, 50, 0.5);
   -moz-box-shadow:    2px 2px 7px 0px rgba(50, 50, 50, 0.5);
   box-shadow:         2px 2px 7px 0px rgba(50, 50, 50, 0.5);
+}
+
+
+
+@media only screen and (min-width: 300px) {
+  .gifImg{
+    width: 90%;
+  }
 }
