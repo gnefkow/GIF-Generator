@@ -87,12 +87,22 @@ function getGIFs() {
       // Give Class:
         newImage.classList.add("gifImg");
 
+      // Add Rating:
+        var rating = response.data[i].rating;
+        var newRating = document.createElement("p");
+        newRating.textContent = `This GIF is rated ${rating}`;
+        newRating.classList.add("rating");
+
       // Add GIFs to the page:
         var newDiv = document.createElement("div");
         newDiv.setAttribute("id",buttonId + i)
         newDiv.classList.add("gifDiv");
         newDiv.appendChild(newImage);
+        newDiv.appendChild(newRating);
         gifSpotEl.prepend(newDiv);
+
+
+        console.log(response);
       }
 
       // Make GIFs Clickable:

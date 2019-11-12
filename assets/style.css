@@ -12,7 +12,7 @@ html {font-size: 62.5%;} /* Sets the default size so you can use ems and rems */
 
 #pageTitle {
   text-align: center;
-  padding-top: 1em;
+  padding-top: 2em;
   padding-bottom: 1em;
 }
 
@@ -50,12 +50,15 @@ html {font-size: 62.5%;} /* Sets the default size so you can use ems and rems */
 }
 
 .gifDiv{
-  margin: 1em;
+  margin: 1em auto 2em auto;
+}
+
+.gifImg {
+  width: 60%;
 }
 
 .gifImg[data-state='still']{
   opacity: 0.5;
-  width: 60%;
   -webkit-box-shadow: 2px 2px 7px 0px rgba(50, 50, 50, 0);
   -moz-box-shadow:    2px 2px 7px 0px rgba(50, 50, 50, 0);
   box-shadow:         2px 2px 7px 0px rgba(50, 50, 50, 0);
@@ -68,9 +71,12 @@ html {font-size: 62.5%;} /* Sets the default size so you can use ems and rems */
   box-shadow:         2px 2px 7px 0px rgba(50, 50, 50, 0.5);
 }
 
+.rating {
+  font-size: 1.5em;
+  color: #888;
+}
 
-
-@media only screen and (min-width: 300px) {
+@media only screen and (max-width: 400px) {
   .gifImg{
     width: 90%;
   }
