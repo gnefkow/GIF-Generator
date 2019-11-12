@@ -51,7 +51,7 @@ function getGIFs() {
   var gifLength = 5;
   var apiKey = "D2pGnNn2qgx3MeX8XOdetCWrKQtU0bD9";
   var pixar = "pixar "
-  var queryURL = `http://api.giphy.com/v1/gifs/search?q=${pixar}${buttonId}&api_key=${apiKey}&limit=${gifLength}`
+  var queryURL = `https://api.giphy.com/v1/gifs/search?q=${pixar}${buttonId}&api_key=${apiKey}&limit=${gifLength}`
 
   $.ajax({
     url: queryURL,
