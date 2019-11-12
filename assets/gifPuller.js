@@ -26,7 +26,7 @@ var buttonId;
 
 
 // Array of initial options:
-var initialOptions = ["Incredibles", "Toy Story", "Cars", "Coco"]
+var initialOptions = ["Incredibles", "Toy Story", "Cars", "Coco", "A Bug's Life", "Monsters, Inc,", "Finding Nemo", "Ratatouille", "WALL-E", "Up", "Inside Out"]
 
 
 
@@ -42,29 +42,35 @@ var initialOptions = ["Incredibles", "Toy Story", "Cars", "Coco"]
 
 
 function getGIFs() {
-
+  var gifLength = 5;
   var apiKey = "D2pGnNn2qgx3MeX8XOdetCWrKQtU0bD9";
-  var queryURL = `http://api.giphy.com/v1/gifs/search?q=${buttonId}&api_key=${apiKey}&limit=5`
+  var pixar = "pixar "
+  var queryURL = `http://api.giphy.com/v1/gifs/search?q=${pixar}${buttonId}&api_key=${apiKey}&limit=${gifLength}`
 
 $.ajax({
   url: queryURL,
   method: "GET"
 })
 
-  .then(function(response) {
-
-    {console.log(response);
+.then(function(response) {
+for (var i = 0; i < gifLength; i++){
+    console.log(response);
       console.log(`buttonId is ${buttonId}`);
       console.log(`queryURL is ${queryURL}`);
       
-  }
+  
   placeholderBoxEl.style.display = "none";
 
-var testGIF = response.data[1].images.downsized.url;
-
+  var getGIF = response.data[i].images.downsized.url;
   var newImage = document.createElement("img");
-  newImage.setAttribute("src", testGIF);
-  gifSpotEl.appendChild(newImage);
+  var newDiv = document.createElement("div");
+  newImage.setAttribute("src", getGIF);
+  newDiv.setAttribute("id",buttonId + i)
+  newDiv.classList.add("gifDiv");
+  newDiv.appendChild(newImage);
+  gifSpotEl.prepend(newDiv);
+
+}
   });
 };
 
