@@ -14,52 +14,7 @@ var buttonId;
 var initialOptions = ["Incredibles", "Toy Story", "Cars", "Coco", "A Bug's Life", "Monsters, Inc,", "Finding Nemo", "Ratatouille", "WALL-E", "Up", "Inside Out"]
 
 
-
-
-
-// ===== ===== ===== ===== GET AND DISPLAY GIFS ===== ===== ===== ===== //
-function getGIFs() {
-  var gifLength = 5;
-  var apiKey = "D2pGnNn2qgx3MeX8XOdetCWrKQtU0bD9";
-  var pixar = "pixar "
-  var queryURL = `http://api.giphy.com/v1/gifs/search?q=${pixar}${buttonId}&api_key=${apiKey}&limit=${gifLength}`
-
-  $.ajax({
-    url: queryURL,
-    method: "GET"
-  })
-
-  .then(function(response) {
-    for (var i = 0; i < gifLength; i++){
-
-      // Hide the Placeholder Box:
-      placeholderBoxEl.style.display = "none";
-
-      // Craft img URL:
-        //Get the URL:
-        var gifURL = response.data[i].images.downsized.url;
-        // Make it still by default:
-        gifURL = gifURL.replace(".gif","_s.gif");
-      
-      // Display GIFs:
-        var newImage = document.createElement("img");
-        var newDiv = document.createElement("div");
-        newImage.setAttribute("src", gifURL);
-        newDiv.setAttribute("id",buttonId + i)
-        newDiv.classList.add("gifDiv");
-        newDiv.appendChild(newImage);
-        gifSpotEl.prepend(newDiv);
-
-      }
-  });
-};
-
-
-
-
-
-
-// ===== ===== ===== ===== FUNCTIONS ===== ===== ===== ===== //
+// ===== ===== ===== ===== QUERY BUTTON FUNCTIONS ===== ===== ===== ===== //
 
 // Create Buttons for the "initial Options" Array
 function createInitialButtons() {
@@ -86,6 +41,94 @@ function getClick() {
     });
   } 
 };
+
+
+
+
+
+// ===== ===== ===== ===== GET AND DISPLAY GIFS ===== ===== ===== ===== //
+function getGIFs() {
+  var gifLength = 5;
+  var apiKey = "D2pGnNn2qgx3MeX8XOdetCWrKQtU0bD9";
+  var pixar = "pixar "
+  var queryURL = `http://api.giphy.com/v1/gifs/search?q=${pixar}${buttonId}&api_key=${apiKey}&limit=${gifLength}`
+
+  $.ajax({
+    url: queryURL,
+    method: "GET"
+  })
+
+  .then(function(response) {
+    for (var i = 0; i < gifLength; i++){
+
+      // Hide the Placeholder Box::
+      placeholderBoxEl.style.display = "none";
+
+      // Craft defaults img URL:
+        //Get the URL:
+        var initialGifURL = response.data[i].images.downsized.url;
+
+      
+      // Display GIFs as IMGs:
+        var newImage = document.createElement("img");
+
+      // Set default to still:
+        gifURL = initialGifURL.replace(".gif", "_s.gif");
+        newImage.setAttribute("src", gifURL);
+      
+      // Create Attributes for Still and Animate:
+        var defaultState = "still";  
+        newImage.setAttribute("data-still", gifURL);
+        newImage.setAttribute("data-animate", initialGifURL);
+        newImage.setAttribute("data-state", defaultState);
+
+      // Give ID:
+        newImage.setAttribute("id", `img-${buttonId}-${i}`);
+      // Give Class:
+        newImage.classList.add("gifImg");
+
+      // Add GIFs to the page:
+        var newDiv = document.createElement("div");
+        newDiv.setAttribute("id",buttonId + i)
+        newDiv.classList.add("gifDiv");
+        newDiv.appendChild(newImage);
+        gifSpotEl.prepend(newDiv);
+      }
+
+      // Make GIFs Clickable:
+        animateClick();
+  });
+};
+
+// ===== ===== ===== ===== ANIMATE + PAUSE GIFS ===== ===== ===== ===== //
+function animateClick() {
+  
+  var clickedGIF = document.getElementsByClassName("gifImg");
+  // Pulls the ID:
+  for (var i = 0; i < clickedGIF.length; i++) {
+    // Event Listener:
+      clickedGIF[i].addEventListener('click', function(i){
+          gifId = i.originalTarget.id;
+          gifState = i.originalTarget.dataset.state;
+
+      // Set to animate or be still:
+          if (gifState === "still") {
+            this.setAttribute("data-state", "animated");
+            this.setAttribute("src", this.dataset.animate);
+          } else {
+            this.setAttribute("data-state", "still");
+            this.setAttribute("src", this.dataset.still);
+          };
+      });
+  };   
+};
+
+
+
+
+
+
+
   
 
 
